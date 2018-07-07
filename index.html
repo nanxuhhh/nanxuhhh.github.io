@@ -126,7 +126,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -160,6 +160,95 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-the-easiest-pwn"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-07-07 19:42:09" datetime="2018-07-07T11:42:09.000Z"  itemprop="datePublished">2018-07-07</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2018/07/07/the-easiest-pwn/">the easiest pwn</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        一、栈帧平衡函数在调用前后栈不变
+引入EBP  ESP寄存器EBP：指向栈底ESP：指向栈顶数值上：ESP&lt;EBP
+call（记住过去与回来的地址)1、返回地址push进栈2、jump到要用的函数
+return（与call相反）1、将返回地址pop出来2、jump到此地址
+如何栈帧平衡将EBP（栈底）push入栈，将EBP指针指向ESP（两个同时指向栈顶），一系列操作完成将ESP指针指...
+    
+
+        <a href="/2018/07/07/the-easiest-pwn/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-swap"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-07-03 15:42:19" datetime="2018-07-03T07:42:19.000Z"  itemprop="datePublished">2018-07-03</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2018/07/03/swap/">swap</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        swap 程序的栈使用情况分析我们先用C语言写一个swap交换函数
+                
+                    
+                    
+                
+                
+            
+分析：1、首先，赋值a=1，b=02、取b的地址，并让其入栈，这个其实是swap的后一个形参bt取a的地址，并让其...
+    
+
+        <a href="/2018/07/03/swap/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-basic"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -191,7 +280,7 @@
     
 
         <a href="/2018/07/03/basic/" class="post-more waves-effect waves-button">
-            続きを読む…
+            Continue reading...
         </a>
     </div>
     
@@ -235,7 +324,7 @@
     
 
         <a href="/2018/07/02/PHP-language/" class="post-more waves-effect waves-button">
-            続きを読む…
+            Continue reading...
         </a>
     </div>
     
@@ -282,7 +371,7 @@
     
 
         <a href="/2018/07/02/Password-blasting/" class="post-more waves-effect waves-button">
-            続きを読む…
+            Continue reading...
         </a>
     </div>
     
@@ -322,7 +411,7 @@ Qu...
     
 
         <a href="/2018/05/13/hello-world/" class="post-more waves-effect waves-button">
-            続きを読む…
+            Continue reading...
         </a>
     </div>
     
@@ -351,7 +440,7 @@ Qu...
 
         <p>
             
-            <span>このブログの内容物は<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
