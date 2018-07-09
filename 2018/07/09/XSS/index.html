@@ -14,26 +14,27 @@
     
     
     
-    <title>swap | Hexo</title>
+    <title>XSS | Hexo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
     
     
     <meta name="keywords" content="">
-    <meta name="description" content="swap 程序的栈使用情况分析我们先用C语言写一个swap交换函数                                                                                                           分析：1、首先，赋值a=1，b=02、取b的地址，并让其入栈，这个其实是swap的后一个形参bt取a的地址，并让其入栈，">
+    <meta name="description" content="Basic KnowlodgeHTML一种超文本标记语言，标准通用标记语言下的一个应用。其结构包括头部分（Head）和主体部分（Body），其中头部提供关于网页的信息，主体部分提供网页的具体内容。由HTML各类标签组成。网页的本质就是超级文本标记语言，通过结合使用其他的Web技术(如：脚本语言、公共网关接口、组件等），可以创造出功能强大的网页。各类标签：  img插入图片 body文档的主体 if">
 <meta property="og:type" content="article">
-<meta property="og:title" content="swap">
-<meta property="og:url" content="http://yoursite.com/2018/07/03/swap/index.html">
+<meta property="og:title" content="XSS">
+<meta property="og:url" content="http://yoursite.com/2018/07/09/XSS/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="swap 程序的栈使用情况分析我们先用C语言写一个swap交换函数                                                                                                           分析：1、首先，赋值a=1，b=02、取b的地址，并让其入栈，这个其实是swap的后一个形参bt取a的地址，并让其入栈，">
+<meta property="og:description" content="Basic KnowlodgeHTML一种超文本标记语言，标准通用标记语言下的一个应用。其结构包括头部分（Head）和主体部分（Body），其中头部提供关于网页的信息，主体部分提供网页的具体内容。由HTML各类标签组成。网页的本质就是超级文本标记语言，通过结合使用其他的Web技术(如：脚本语言、公共网关接口、组件等），可以创造出功能强大的网页。各类标签：  img插入图片 body文档的主体 if">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://i.imgur.com/XozZQxK.png">
-<meta property="og:updated_time" content="2018-07-06T15:00:34.084Z">
+<meta property="og:image" content="https://i.imgur.com/9zBCW4S.png">
+<meta property="og:image" content="https://i.imgur.com/Upeeqet.png">
+<meta property="og:updated_time" content="2018-07-09T15:21:59.108Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="swap">
-<meta name="twitter:description" content="swap 程序的栈使用情况分析我们先用C语言写一个swap交换函数                                                                                                           分析：1、首先，赋值a=1，b=02、取b的地址，并让其入栈，这个其实是swap的后一个形参bt取a的地址，并让其入栈，">
-<meta name="twitter:image" content="https://i.imgur.com/XozZQxK.png">
+<meta name="twitter:title" content="XSS">
+<meta name="twitter:description" content="Basic KnowlodgeHTML一种超文本标记语言，标准通用标记语言下的一个应用。其结构包括头部分（Head）和主体部分（Body），其中头部提供关于网页的信息，主体部分提供网页的具体内容。由HTML各类标签组成。网页的本质就是超级文本标记语言，通过结合使用其他的Web技术(如：脚本语言、公共网关接口、组件等），可以创造出功能强大的网页。各类标签：  img插入图片 body文档的主体 if">
+<meta name="twitter:image" content="https://i.imgur.com/9zBCW4S.png">
     
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
@@ -126,7 +127,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">swap</div>
+        <div class="flex-col header-title ellipsis">XSS</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -148,11 +149,11 @@
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">swap</h1>
+        <h1 class="title">XSS</h1>
         <h5 class="subtitle">
             
-                <time datetime="2018-07-03T07:42:19.000Z" itemprop="datePublished" class="page-time">
-  2018-07-03
+                <time datetime="2018-07-09T07:39:41.000Z" itemprop="datePublished" class="page-time">
+  2018-07-09
 </time>
 
 
@@ -171,18 +172,18 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#swap-程序的栈使用情况分析"><span class="post-toc-number">1.</span> <span class="post-toc-text">swap 程序的栈使用情况分析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#我们先用C语言写一个swap交换函数"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">我们先用C语言写一个swap交换函数</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#分析："><span class="post-toc-number">1.2.</span> <span class="post-toc-text">分析：</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Basic-Knowlodge"><span class="post-toc-number">1.</span> <span class="post-toc-text">Basic Knowlodge</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#HTML"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">HTML</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Javascript"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">Javascript</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Javascript弹框操作"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">Javascript弹框操作</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#XSS"><span class="post-toc-number">2.</span> <span class="post-toc-text">XSS</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#反射型XSS"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">反射型XSS</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#存储型XSS"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">存储型XSS</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#绕过XSS限制"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">绕过XSS限制</span></a></li></ol></li></ol>
         </nav>
     </aside>
 
 
-<article id="post-swap"
+<article id="post-XSS"
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">swap</h1>
+        <h1 class="post-card-title">XSS</h1>
         <div class="post-meta">
-            <time class="post-time" title="2018-07-03 15:42:19" datetime="2018-07-03T07:42:19.000Z"  itemprop="datePublished">2018-07-03</time>
+            <time class="post-time" title="2018-07-09 15:39:41" datetime="2018-07-09T07:39:41.000Z"  itemprop="datePublished">2018-07-09</time>
 
             
 
@@ -195,14 +196,35 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h1 id="swap-程序的栈使用情况分析"><a href="#swap-程序的栈使用情况分析" class="headerlink" title="swap 程序的栈使用情况分析"></a>swap 程序的栈使用情况分析</h1><h2 id="我们先用C语言写一个swap交换函数"><a href="#我们先用C语言写一个swap交换函数" class="headerlink" title="我们先用C语言写一个swap交换函数"></a>我们先用C语言写一个swap交换函数</h2><figure class="image-bubble">
+            <h1 id="Basic-Knowlodge"><a href="#Basic-Knowlodge" class="headerlink" title="Basic Knowlodge"></a>Basic Knowlodge</h1><h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><p>一种超文本标记语言，标准通用标记语言下的一个应用。其结构包括头部分（Head）和主体部分（Body），其中头部提供关于网页的信息，主体部分提供网页的具体内容。由HTML各类标签组成。<br><br>网页的本质就是超级文本标记语言，通过结合使用其他的Web技术(如：脚本语言、公共网关接口、组件等），可以创造出功能强大的网页。<br><br>各类标签：</p>
+<ul>
+<li>img插入图片</li>
+<li>body文档的主体</li>
+<li>iframe在网页显示网页<h2 id="Javascript"><a href="#Javascript" class="headerlink" title="Javascript"></a>Javascript</h2>一种直译式脚本语言，是一种动态类型、弱类型、基于原型的语言，内置支持类型。它的解释器被称为JavaScript引擎，为浏览器的一部分，广泛用于客户端的脚本语言，最早是在HTML（标准通用标记语言下的一个应用）网页上使用，用来给HTML网页增加动态功能。<h2 id="Javascript弹框操作"><a href="#Javascript弹框操作" class="headerlink" title="Javascript弹框操作"></a>Javascript弹框操作</h2>alert()：用于提示<br><br>confirm()：用于和用户交互确认<br><br>prompt()：弹框让用户输入信息</li>
+</ul>
+<h1 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h1><p>跨站脚本攻击，一种出现在web应用程序中的计算机安全漏洞。<br><br>由于web应用对用户的输入过滤不严而产生。<br><br>恶意攻击者通过”HTML注入”篡改网页，插入恶意脚本，从而控制用户浏览器行为的一种攻击方式。</p>
+<h2 id="反射型XSS"><a href="#反射型XSS" class="headerlink" title="反射型XSS"></a>反射型XSS</h2><p>也称为非持久性、参数型跨站脚本。主要用于将恶意的脚本附加到URL地址的参数中。<br><br>一般使用的已经构造好的恶意URL发送给受害者，诱使受害者点击触发，只执行一次。<br><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="https://i.imgur.com/XozZQxK.png" alt="" title="">
+                    <img src="https://i.imgur.com/9zBCW4S.png" alt="" title="">
                 </div>
                 <div class="image-caption"></div>
-            </figure>
-<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>1、首先，赋值a=1，b=0<br><br>2、取b的地址，并让其入栈，这个其实是swap的后一个形参bt<br><br>取a的地址，并让其入栈，这个其实是swap的后一个形参at<br><br>函数参数的入栈顺序是从右至左<br><br>3、定义temp，并将其入栈<br><br>4、下面模拟进栈顺序：</p>
+            </figure></p>
+<h2 id="存储型XSS"><a href="#存储型XSS" class="headerlink" title="存储型XSS"></a>存储型XSS</h2><p>比反射型跨站脚本更具威胁，并且可能影响到web服务器的自身安全。<br><br>攻击者事先将恶意JavaScript代码上传或存储到漏洞服务器中（例如在网页上输入一些评论（包含恶意代码），就会传送给数据库，只要用户浏览网页，我们就能获得相应信息），只要受害者浏览包含此恶意代码的页面就会执行恶意代码。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.imgur.com/Upeeqet.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<h2 id="绕过XSS限制"><a href="#绕过XSS限制" class="headerlink" title="绕过XSS限制"></a>绕过XSS限制</h2><p>在测试的时候，我们可能会遇到我们输入的恶意代码某些字符被过滤掉，不能起到该起的作用，这时候我们就需要绕过这些限制了，主要有四种方法：</p>
+<ul>
+<li>如果是alert()之类的括号里的某些单引号被转义了之类的，例如，magic_quotes_gpc=ON 是php中的安全设置，开启后会把一些特殊字符进行轮换，如单引号会被转义为\’，此时我们可以将我们需要输的字符转化为ASCII码或者16进制形式，这时候，我们就能输出我们想要弹出的字符。</li>
+<li>转化为ASCII码的方式为：利用String.fromCharCode()函数将括号里的ASCII码值转化为我们想输的字符，注意，这里只是将ASCII码转化为我们需要的字符，并没有执行任何操作，在真正进行的时候，仍需JS的一些函数。</li>
+<li>转化为16进制：就是将我们要输入的字符转化为16进制，用法与转化为ASCII码值是一样的。</li>
+<li>改变大小写</li>
+<li>关闭标签（&gt;<script>slert(‘xss’);</script>）（闭合前面的标签）</li>
+</ul>
 
         </div>
 
@@ -211,12 +233,12 @@
     <div class="content">
         
 <span class="post-time">
-    最終更新：<time datetime="2018-07-06T15:00:34.084Z" itemprop="dateUpdated">2018-07-06 23:00:34</time>
+    最終更新：<time datetime="2018-07-09T15:21:59.108Z" itemprop="dateUpdated">2018-07-09 23:21:59</time>
 </span><br>
 
 
         
-        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/07/03/swap/" target="_blank" rel="external">http://yoursite.com/2018/07/03/swap/</a>
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/07/09/XSS/" target="_blank" rel="external">http://yoursite.com/2018/07/09/XSS/</a>
         
     </div>
     
@@ -245,7 +267,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/07/03/swap/&title=《swap》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/07/09/XSS/&title=《XSS》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -255,22 +277,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/07/03/swap/&title=《swap》 — Hexo&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/07/09/XSS/&title=《XSS》 — Hexo&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/07/03/swap/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/07/09/XSS/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《swap》 — Hexo&url=http://yoursite.com/2018/07/03/swap/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《XSS》 — Hexo&url=http://yoursite.com/2018/07/09/XSS/&via=http://yoursite.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/07/03/swap/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/07/09/XSS/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -290,21 +312,14 @@
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between">
-  
-    <div class="waves-block waves-effect prev">
-      <a href="/2018/07/07/the-easiest-pwn/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">the easiest pwn</h4>
-      </a>
-    </div>
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2018/07/03/basic/" id="post-next" class="post-nav-link">
+      <a href="/2018/07/07/the-easiest-pwn/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">basic</h4>
+        <h4 class="title">the easiest pwn</h4>
       </a>
     </div>
   
@@ -399,7 +414,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/07/03/swap/&title=《swap》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/07/09/XSS/&title=《XSS》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -409,22 +424,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/07/03/swap/&title=《swap》 — Hexo&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/07/09/XSS/&title=《XSS》 — Hexo&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/07/03/swap/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/07/09/XSS/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《swap》 — Hexo&url=http://yoursite.com/2018/07/03/swap/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《XSS》 — Hexo&url=http://yoursite.com/2018/07/09/XSS/&via=http://yoursite.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/07/03/swap/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/07/09/XSS/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -435,7 +450,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2018/07/03/swap/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2018/07/09/XSS/" alt="微信分享二维码">
 </div>
 
 
